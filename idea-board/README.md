@@ -1,4 +1,9 @@
-# CCal back-end developer technical test
+# Steps
+0. Install Node.JS
+1. `npm install`
+2. `npm run test`
+
+## CCal back-end developer technical test
 Your main goal is to implement missing methods in [`IdeaService`](idea-service.ts), this consists of several smaller tasks:
 1.  Define types for:
       - `BasicIdea`: Base type, contains `description` and `title` fields.
@@ -25,7 +30,7 @@ Your main goal is to implement missing methods in [`IdeaService`](idea-service.t
 We are looking for **clean TypeScript code**, with **no duplication**.
 The usage of `any` should be as limited as possible, please annotate **parameters and variables with concrete types**, but please do not clutter your code with **inferable types**.
 
-## Notes
+### Notes
 - You can install additional dependencies (e.g for unit tests) but please keep them minimal and write your solutions with pure TypeScript.
 - Think of validation and error handling. Please describe in the comment (or implement) what's your idea for these topics.
 - Bonus points for advanced TypeScript solutions like conditional type instead of method overloads, mapped types etc.
