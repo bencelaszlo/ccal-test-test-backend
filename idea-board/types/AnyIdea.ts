@@ -1,5 +1,5 @@
-import { BasicIdea } from "../entities/BasicIdea";
-import { Concept } from "../entities/Concept";
-import { Todo } from "../entities/Todo";
+import { BasicIdea } from "./BasicIdea";
+import { Concept } from "./Concept";
+import { Todo } from "./Todo";
 
 export type AnyIdea = BasicIdea | Concept | Todo;
