@@ -120,4 +120,5 @@ test('It should update BasicIdea item with only a new description (partial updat
   });
 
   expect(updatedItem.description).toBe(updatedDescription);
+  expect(updatedItem.title).toBe(testTitle);
 })

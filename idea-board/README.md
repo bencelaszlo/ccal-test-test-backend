@@ -1,4 +1,4 @@
-# Steps
+# How to Start
 0. Install Node.JS
 1. `npm install`
 2. `npm run test`

@@ -1,9 +1,7 @@
 import { NotificationService } from './notification-service';
-import { Todo } from './types/Todo';
 import { AnyIdea } from './types/AnyIdea';
-import { BasicIdea } from './types/BasicIdea';
-import {Concept } from './types/Concept';
 import { UpdateAnyIdea } from './types/UpdateAnyIdea';
+import { ideaTypes, shouldSendNotification, notifyUpdateKeys } from './utils';
 
 /* 
   Task 1. Define types for:
@@ -48,31 +46,12 @@ export class IdeaService {
 
     this.repository.map(item => item.id === id ? Object.assign(item, updates) : item);
 
-    const notifyUpdateKeys = {
-      BasicIdea: ['title'],
-      Todo: ['done'],
-      Concept: ['references']
-    };
-
-    const constructorName = item.constructor.name;
-
-    if (constructorName === BasicIdea.name && notifyUpdateKeys['BasicIdea'].some(key => updateKeys.includes(key))) {
+    const constructorName: ideaTypes = item.constructor.name as ideaTypes;
+    if (shouldSendNotification(constructorName, updateKeys)) {
       this.notificationService.notify({
         id: id,
         type: constructorName,
-        updatedFields: (notifyUpdateKeys['BasicIdea'].filter(key => updateKeys.includes(key)))
-      });
-    } else if (constructorName === Todo.name && notifyUpdateKeys['Todo'].some(key => updateKeys.includes(key))) {
-      this.notificationService.notify({
-        id: id,
-        type: constructorName,
-        updatedFields: (notifyUpdateKeys['Todo'].filter(key => updateKeys.includes(key)))
-      });
-    } else if (constructorName === Concept.name && notifyUpdateKeys['Concept'].some(key => updateKeys.includes(key))) {
-      this.notificationService.notify({
-        id: id,
-        type: constructorName,
-        updatedFields: (notifyUpdateKeys['Concept'].filter(key => updateKeys.includes(key)))
+        updatedFields: (notifyUpdateKeys[constructorName].filter(key => updateKeys.includes(key)))
       });
     }
 
